@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 class Product {
     int id, price;
@@ -27,19 +29,28 @@ public class Lambda_Expression2 {
         }
     }
     public static void main(String[] args) {
-        ArrayList<Product>shop = new ArrayList<>();
+        ArrayList<Product> shop = new ArrayList<>();
         shop.add(new Product(101, 240, "Soap"));
         shop.add(new Product(129, 300, "Bhujia"));
         shop.add(new Product(102, 100, "Harpic"));
         shop.add(new Product(105, 90, "Lizol"));
 
-        Comparator<Product>comp1 = Comparator.comparingInt(e -> e.price);
-        Collections.sort(shop, comp1);
+//        Comparator<Product>comp1 = Comparator.comparingInt(e -> e.price);
+//        Collections.sort(shop, comp1);
+//
+//        Comparator<Product>comp2 = Comparator.comparing(e -> e.name);
+//        Collections.sort(shop, comp2);
+//
+//        Comparator<Product>comp3 = Comparator.comparingInt(e -> e.id);
+//        Collections.sort(shop, comp3.reversed());
 
-        Comparator<Product>comp2 = Comparator.comparing(e -> e.name);
-        Collections.sort(shop, comp2);
-    
-        print(shop);
+        Predicate<Product> pr = p -> p.price > 200;
+
+        shop.stream().filter(pr).forEach(x -> System.out.println(x));
+
+
+
+//        print(shop);
 
     }
 }
